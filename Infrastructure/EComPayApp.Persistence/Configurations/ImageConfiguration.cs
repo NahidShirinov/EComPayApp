@@ -13,21 +13,17 @@ namespace EComPayApp.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Image> builder)
         {
-            builder.HasKey(pi => pi.ProductId);
 
-            
-            builder.Property(pi => pi.ImageUrl)
+            builder.Property(i => i.ImageUrl)
                    .IsRequired()
-                   .HasMaxLength(2048); 
+                   .HasMaxLength(2048);
 
-           
-            builder.Property(pi => pi.IsMainImage)
+            builder.Property(i => i.IsMainImage)
                    .IsRequired();
 
-           
-            builder.HasOne(pi => pi.Product)
+            builder.HasOne(i => i.Product)
                    .WithMany(p => p.Images)
-                   .HasForeignKey(pi => pi.ProductId);
+                   .HasForeignKey(i => i.ProductId);
         }
     }
 }
