@@ -1,4 +1,5 @@
 ﻿using EComPayApp.Domain.Entities;
+using EComPayApp.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,9 @@ namespace EComPayApp.Persistence.Contexts
         DbSet<Payment> Payments { get; set; }
         DbSet<Product> Products { get; set; }
 
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(EComPayAppDbContext).Assembly);
+        }
     }
 }
