@@ -8,6 +8,9 @@
 
   <ItemGroup>
     <Folder Include="DTOs\" />
+    <Folder Include="Features\CQRS\Commands\" />
+    <Folder Include="Features\CQRS\Handlers\" />
+    <Folder Include="Features\CQRS\Queries\" />
     <Folder Include="Mappings\" />
   </ItemGroup>
 
