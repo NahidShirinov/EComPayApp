@@ -1,4 +1,5 @@
-﻿using EComPayApp.Domain.Entities.Comman;
+﻿using EComPayApp.Domain.Entities;
+using EComPayApp.Domain.Entities.Comman;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,6 @@ namespace EComPayApp.Application.Interfaces.Repositories
         Task<bool> RemoveAsync(string Id);
         bool Update(T entity);
         Task<int> SaveAsync();
+        Task<Product> GetByIdAsync(Guid id);
     }
 }

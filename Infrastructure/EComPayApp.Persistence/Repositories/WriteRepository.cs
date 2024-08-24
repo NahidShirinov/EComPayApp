@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EComPayApp.Persistence.Contexts;
 using EComPayApp.Application.Interfaces.Repositories;
+using EComPayApp.Domain.Entities;
 
 namespace EComPayApp.Persistence.Repositories
 {
@@ -32,6 +33,11 @@ namespace EComPayApp.Persistence.Repositories
         {
             await Table.AddRangeAsync(entities);
             return true;
+        }
+
+        public Task<Product> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
         }
 
         public bool Remove(T entity)

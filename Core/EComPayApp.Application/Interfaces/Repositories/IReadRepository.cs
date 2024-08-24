@@ -14,5 +14,6 @@ namespace EComPayApp.Application.Interfaces.Repositories
         IQueryable<T> Get(Expression<Func<T, bool>> expression, bool tracking = true);
         Task<T> GetSingleAsync(Expression<Func<T, bool>> expression, bool tracking = true);
         Task<T> GetByIdAsync(string Id, bool tracking = true);
+        Task<T> GetByIdAsync(Guid id);
     }
 }

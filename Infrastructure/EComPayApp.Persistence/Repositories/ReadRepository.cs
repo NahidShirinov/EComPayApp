@@ -53,7 +53,12 @@ namespace EComPayApp.Persistence.Repositories
             return await query.FirstOrDefaultAsync(data => data.Id == Guid.Parse(Id));
         }
 
+       
 
+        Task<T> IReadRepository<T>.GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }
