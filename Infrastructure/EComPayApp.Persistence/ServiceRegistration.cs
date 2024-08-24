@@ -13,6 +13,7 @@ namespace EComPayApp.Persistence
     {
         public static void AddPersistenceServices(this IServiceCollection services)
         {
+           
             services.AddDbContext<EComPayAppDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.ConnectionString);
