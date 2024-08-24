@@ -13,8 +13,8 @@ namespace EComPayApp.Application.DTOs.ProductDtos
         public string Description { get; set; }
         public int Stock { get; set; }
         public float Price { get; set; }
-        public ICollection<GetOrderItemsDto> OrderItems { get; set; } // Sipariş kalemleri detayları
-        public GetCategoryDto Category { get; set; } // Kategori detayları
+        public ICollection<GetOrderItemsDto> OrderItems { get; set; } 
+        public GetCategoryDto Category { get; set; } 
         public Guid BranchId { get; set; }
         public GetBranchDto Branch { get; set; }
     }

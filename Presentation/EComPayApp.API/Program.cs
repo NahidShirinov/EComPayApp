@@ -1,4 +1,5 @@
 using EComPayApp.Persistence;
+using System.Reflection;
 namespace EComPayApp.API
 {
     public class Program
@@ -13,7 +14,6 @@ namespace EComPayApp.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddPersistenceServices();
-
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

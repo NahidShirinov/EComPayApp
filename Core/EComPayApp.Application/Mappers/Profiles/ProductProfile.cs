@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using EComPayApp.Application.DTOs.ProductDtos;
+using EComPayApp.Domain.Entities;
+
 
 namespace EComPayApp.Application.Mappers.Profiles
 {
-    internal class ProductProfile
+    public class ProductProfile:Profile
     {
+        public ProductProfile()
+        {
+            CreateMap<Product, GetProductDto>().ReverseMap();
+        }
     }
 }
