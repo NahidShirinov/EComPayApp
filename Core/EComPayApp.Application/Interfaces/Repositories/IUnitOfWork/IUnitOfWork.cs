@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EComPayApp.Domain.Entities.Comman;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,28 +9,11 @@ namespace EComPayApp.Application.Interfaces.Repositories.IUnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        IAddressReadRepository AddressReadRepository { get; }
-        IAddressWriteRepository AddressWriteRepository { get; }
-        IProductReadRepository ProductReads { get; }
-        IProductWriteRepository ProductWrites { get; }
-        ICustomerReadRepository CustomerReads { get; }
-        ICustomerWriteRepository CustomerWrites { get; }
-        IAddressReadRepository AddressReads { get; }
-        IAddressWriteRepository AddressWrites { get; }
-        IBranchReadRepository BranchReads { get; }
-        IBranchWriteRepository BranchWrites { get; }
-        IPaymentReadRepository paymentReadRepository { get; }
-        IPaymentWriteRepository paymentWriteRepository { get; }
-        ICategoryReadRepository categoryReads { get; }
-        ICategoryWriteRepository categoryWrites { get; }    
-        IOrderItemReadRepository orderItemReads { get; }
-        IOrderItemWriteRepository orderItemWrites { get; }
-        IOrderWriteRepository orderWriteRepository { get; }
-        IOrderReadRepository orderReadRepository { get; }
+        IReadRepository<T> ReadRepository<T>() where T : BaseEntity;
+        IWriteRepository<T> WriteRepository<T>() where T : BaseEntity;
 
-        Task<int> CompleteAsync();
+        Task<int> CommitAsync();
     }
-    
 
-    
+
 }

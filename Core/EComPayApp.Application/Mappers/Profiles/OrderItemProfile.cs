@@ -12,5 +12,4 @@ namespace EComPayApp.Application.Mappers.Profiles
             CreateMap<OrderItem, GetOrderDto>().ReverseMap();
         }
     }
-
 }
