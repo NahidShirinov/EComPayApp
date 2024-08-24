@@ -12,4 +12,5 @@ namespace EComPayApp.Application.Mappers.Profiles
             CreateMap<Product, GetProductDto>().ReverseMap();
         }
     }
+
 }
