@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace EComPayApp.Application.Features.CQRS.Commands.Branches.CreateBranch
 {
-    internal class CreateBranchResponse
+    public class CreateBranchResponse
     {
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
     }
 }

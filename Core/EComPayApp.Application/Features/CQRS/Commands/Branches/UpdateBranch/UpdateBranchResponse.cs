@@ -8,5 +8,7 @@ namespace EComPayApp.Application.Features.CQRS.Commands.Branches.UpdateBranch
 {
     public class UpdateBranchResponse
     {
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
     }
 }

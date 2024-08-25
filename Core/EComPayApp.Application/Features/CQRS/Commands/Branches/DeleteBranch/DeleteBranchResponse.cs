@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace EComPayApp.Application.Features.CQRS.Commands.Branches.DeleteBranch
 {
-    internal class DeleteBranchResponse
+    public class DeleteBranchResponse
     {
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
     }
 }

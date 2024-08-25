@@ -8,5 +8,7 @@ namespace EComPayApp.Application.Features.CQRS.Commands.Categories.DeleteCategor
 {
     public class DeleteCategoryResponse
     {
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
     }
 }
