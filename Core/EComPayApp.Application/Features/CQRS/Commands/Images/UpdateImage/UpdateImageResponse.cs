@@ -8,5 +8,7 @@ namespace EComPayApp.Application.Features.CQRS.Commands.Images.UpdateImage
 {
     public class UpdateImageResponse
     {
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
     }
 }

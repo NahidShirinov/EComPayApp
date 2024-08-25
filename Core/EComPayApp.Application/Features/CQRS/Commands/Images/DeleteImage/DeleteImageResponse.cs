@@ -8,5 +8,7 @@ namespace EComPayApp.Application.Features.CQRS.Commands.Images.DeleteImage
 {
     public class DeleteImageResponse
     {
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
     }
 }

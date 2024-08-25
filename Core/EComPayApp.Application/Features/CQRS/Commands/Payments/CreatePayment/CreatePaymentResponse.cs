@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EComPayApp.Application.Features.CQRS.Commands.Images.CreateImage
+namespace EComPayApp.Application.Features.CQRS.Commands.Payments.CreatePayment
 {
-    public class CreateImageResponse
+    public class CreatePaymentResponse
     {
         public bool IsSuccess { get; set; }
         public string Message { get; set; }

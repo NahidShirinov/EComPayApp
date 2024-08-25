@@ -1,6 +1,10 @@
-﻿namespace EComPayApp.Application.Features.CQRS.Commands.Images.DeleteImage
+﻿using MediatR;
+
+namespace EComPayApp.Application.Features.CQRS.Commands.Images.DeleteImage
 {
-    public class DeleteImageCommand
+    public class DeleteImageCommand:IRequest<DeleteImageResponse>
     {
+        public Guid Id { get; set; }
+
     }
 }
