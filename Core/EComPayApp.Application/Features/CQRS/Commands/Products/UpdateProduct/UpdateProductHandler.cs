@@ -1,4 +1,6 @@
-﻿using EComPayApp.Application.Features.CQRS.Queries.Products.GetProduct;
+﻿using AutoMapper;
+using EComPayApp.Application.Features.CQRS.Queries.Products.GetProduct;
+using EComPayApp.Application.Interfaces.Repositories;
 using EComPayApp.Application.Interfaces.Repositories.IUnitOfWork;
 using EComPayApp.Domain.Entities;
 using MediatR;
@@ -10,32 +12,40 @@ using System.Threading.Tasks;
 
 namespace EComPayApp.Application.Features.CQRS.Commands.Products.UpdateProduct
 {
-    public class UpdateProductHandler : IRequestHandler<UpdateProductCommand>
+    public class UpdateProductHandler : IRequestHandler<UpdateProductCommand, UpdateProductResponse>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IWriteRepository<Product> _repository;
+        private readonly IMapper _mapper;
 
-        public UpdateProductHandler(IUnitOfWork unitOfWork)
+        public UpdateProductHandler(IWriteRepository<Product> repository, IMapper mapper)
         {
-            _unitOfWork = unitOfWork;
+            _repository = repository;
+            _mapper = mapper;
         }
 
-        public async Task<Unit> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
+        public async Task<UpdateProductResponse> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
-            var writeRepository = _unitOfWork.WriteRepository<Product>();
-            var product = await writeRepository.GetByIdAsync(request.Id);
+            var product = await _repository.GetByIdAsync(request.Id);
 
             if (product == null)
             {
-                throw new NotFoundException(nameof(Product), request.Id);
+                return new UpdateProductResponse
+                {
+                    IsSuccess = false,
+                    Message = "Product not found"
+                };
             }
 
-            product.Name = request.Name;
-            product.Price = (float)request.Price;
+            _mapper.Map(request, product);
 
-            writeRepository.Update(product);
-            await _unitOfWork.CommitAsync();
-            return Unit.Value;
+            var result = _repository.Update(product);
+            await _repository.SaveAsync();
+
+            return new UpdateProductResponse
+            {
+                IsSuccess = result,
+                Message = result ? "Product updated successfully" : "Update failed"
+            };
         }
-    
     }
-}
+    }

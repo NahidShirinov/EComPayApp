@@ -8,9 +8,11 @@ namespace EComPayApp.API
     {
         public static void Main(string[] args)
         {
+           
             var builder = WebApplication.CreateBuilder(args);
             // Add services to the container.
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+       
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             builder.Services.AddControllers();

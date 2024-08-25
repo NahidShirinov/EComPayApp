@@ -1,4 +1,5 @@
 ﻿using EComPayApp.Application.Features.CQRS.Queries.Products.GetProduct;
+using EComPayApp.Application.Interfaces.Repositories;
 using EComPayApp.Application.Interfaces.Repositories.IUnitOfWork;
 using EComPayApp.Domain.Entities;
 using MediatR;
@@ -10,28 +11,36 @@ using System.Threading.Tasks;
 
 namespace EComPayApp.Application.Features.CQRS.Commands.Products.DeleteProduct
 {
-    public class DeleteProductHandler : IRequestHandler<DeleteProductCommand>
+    public class DeleteProductHandler : IRequestHandler<DeleteProductCommand, DeleteProductResponse>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IWriteRepository<Product> _repository;
 
-        public DeleteProductHandler(IUnitOfWork unitOfWork)
+        public DeleteProductHandler(IWriteRepository<Product> repository)
         {
-            _unitOfWork = unitOfWork;
+            _repository = repository;
         }
 
-        public async Task<Unit> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
+        public async Task<DeleteProductResponse> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
-            var writeRepository = _unitOfWork.WriteRepository<Product>();
-            var product = await writeRepository.GetByIdAsync(request.Id);
+            var product = await _repository.GetByIdAsync(request.Id);
 
             if (product == null)
             {
-                throw new NotFoundException(nameof(Product), request.Id);
+                return new DeleteProductResponse
+                {
+                    IsSuccess = false,
+                    Message = "Product not found"
+                };
             }
 
-            writeRepository.Remove(product);
-            await _unitOfWork.CommitAsync();
-            return Unit.Value;
+            var result = _repository.Remove(product);
+            await _repository.SaveAsync();
+
+            return new DeleteProductResponse
+            {
+                IsSuccess = result,
+                Message = result ? "Product deleted successfully" : "Delete failed"
+            };
         }
     }
-    }
+}

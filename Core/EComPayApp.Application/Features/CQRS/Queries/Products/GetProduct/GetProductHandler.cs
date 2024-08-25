@@ -1,4 +1,6 @@
-﻿using EComPayApp.Application.DTOs.ProductDtos;
+﻿using AutoMapper;
+using EComPayApp.Application.DTOs.ProductDtos;
+using EComPayApp.Application.Interfaces.Repositories;
 using EComPayApp.Application.Interfaces.Repositories.IUnitOfWork;
 using EComPayApp.Domain.Entities;
 using MediatR;
@@ -10,35 +12,37 @@ using System.Threading.Tasks;
 
 namespace EComPayApp.Application.Features.CQRS.Queries.Products.GetProduct
 {
-    public class GetProductHandler : IRequestHandler<GetProductQuery, GetProductDto>
+    public class GetProductHandler : IRequestHandler<GetProductQuery, GetProductResponse>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IReadRepository<Product> _repository;
+        private readonly IMapper _mapper;
 
-        public GetProductHandler(IUnitOfWork unitOfWork)
+        public GetProductHandler(IReadRepository<Product> repository, IMapper mapper)
         {
-            _unitOfWork = unitOfWork;
+            _repository = repository;
+            _mapper = mapper;
         }
 
-        public async Task<GetProductDto> Handle(GetProductQuery request, CancellationToken cancellationToken)
+        public async Task<GetProductResponse> Handle(GetProductQuery request, CancellationToken cancellationToken)
         {
-            var readRepository = _unitOfWork.ReadRepository<Product>();
-
-            // Məhsulu ID ilə əldə et
-            var product = await readRepository.GetByIdAsync(request.Id);
+            var product = await _repository.GetByIdAsync(request.Id);
 
             if (product == null)
             {
-                throw new NotFoundException(nameof(Product), request.Id);
+                return new GetProductResponse
+                {
+                    IsSuccess = false,
+                    Message = "Product not found"
+                };
             }
 
-            // Məhsulu DTO-ya xəritələndir
-            return new GetProductDto
+            var productDto = _mapper.Map<GetProductDto>(product);
+
+            return new GetProductResponse
             {
-                
-                Name = product.Name,
-                Price = product.Price
+                IsSuccess = true,
+                Product = productDto
             };
         }
     }
-    
-    }
+}

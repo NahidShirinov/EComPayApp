@@ -19,6 +19,7 @@ namespace EComPayApp.Persistence
                 options.UseSqlServer(Configuration.ConnectionString);
             });
         }
+
     }
 
 }

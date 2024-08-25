@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EComPayApp.Application.Features.CQRS.Commands.Products.DeleteProduct
+namespace EComPayApp.Application.Features.CQRS.Commands.Address.DeleteAddress
 {
-    public class DeleteProductCommand : IRequest<DeleteProductResponse>
+    public class DeleteAddressCommand : IRequest<DeleteAddressResponse>
     {
         public Guid Id { get; set; }
+    
     }
 }

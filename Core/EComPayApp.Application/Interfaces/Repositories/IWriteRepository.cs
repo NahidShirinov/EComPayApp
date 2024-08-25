@@ -16,7 +16,12 @@ namespace EComPayApp.Application.Interfaces.Repositories
         bool RemoveRange(List<T> entities);
         Task<bool> RemoveAsync(string Id);
         bool Update(T entity);
-        Task<int> SaveAsync();
-        Task<Product> GetByIdAsync(Guid id);
+        Task<int> SaveAsync(CancellationToken cancellationToken);
+        Task UpdateAsync(Product product);
+        Task<bool> GetByIdAsync(T entity);
+        Task<T> GetByIdAsync(Guid id);
+        Task UpdateAsync(Customer customer);
+        Task DeleteAsync(Customer customer);
+        Task SaveAsync();
     }
 }

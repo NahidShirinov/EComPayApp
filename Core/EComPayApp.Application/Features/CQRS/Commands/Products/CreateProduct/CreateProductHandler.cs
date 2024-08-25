@@ -1,4 +1,6 @@
-﻿using EComPayApp.Application.Interfaces.Repositories.IUnitOfWork;
+﻿using AutoMapper;
+using EComPayApp.Application.Interfaces.Repositories;
+using EComPayApp.Application.Interfaces.Repositories.IUnitOfWork;
 using EComPayApp.Domain.Entities;
 using MediatR;
 using System;
@@ -9,29 +11,29 @@ using System.Threading.Tasks;
 
 namespace EComPayApp.Application.Features.CQRS.Commands.Products.CreateProduct
 {
-    public class CreateProductHandler : IRequestHandler<CreateProductCommand, Guid> // Guid olaraq dəyişdirildi
+    public class CreateProductHandler : IRequestHandler<CreateProductCommand, CreateProductResponse>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IWriteRepository<Product> _repository;
+        private readonly IMapper _mapper;
 
-        public CreateProductHandler(IUnitOfWork unitOfWork)
+        public CreateProductHandler(IWriteRepository<Product> repository, IMapper mapper)
         {
-            _unitOfWork = unitOfWork;
+            _repository = repository;
+            _mapper = mapper;
         }
 
-        public async Task<Guid> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        public async Task<CreateProductResponse> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            var product = new Product
-            {
-                Id = Guid.NewGuid(), // Yeni bir GUID təyin edildi
-                Name = request.Name,
-                Price = (float)request.Price
-                // Digər xassələri təyin edin
-            };
+            var product = _mapper.Map<Product>(request);
 
-            var writeRepository = _unitOfWork.WriteRepository<Product>();
-            await writeRepository.AddAsync(product);
-            await _unitOfWork.CommitAsync();
-            return product.Id; // Id artıq Guid olaraq
+            var result = await _repository.AddAsync(product);
+            await _repository.SaveAsync();
+
+            return new CreateProductResponse
+            {
+                IsSuccess = result,
+                Message = result ? "Product created successfully" : "Creation failed"
+            };
         }
     }
 }

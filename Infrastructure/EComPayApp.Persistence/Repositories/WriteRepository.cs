@@ -35,7 +35,18 @@ namespace EComPayApp.Persistence.Repositories
             return true;
         }
 
-        public Task<Product> GetByIdAsync(Guid id)
+        public Task DeleteAsync(Customer customer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<T> GetByIdAsync(Guid id)
+        {
+            // ID ilə entiti-ni tapmaq üçün `Table` istifadə edilir.
+            return await Table.FirstOrDefaultAsync(e => e.Id == id);
+        }
+
+        public Task<bool> GetByIdAsync(T entity)
         {
             throw new NotImplementedException();
         }
@@ -46,10 +57,15 @@ namespace EComPayApp.Persistence.Repositories
             return entityEntry.State == EntityState.Deleted;
         }
 
-        public async Task<bool> RemoveAsync(string Id)
+        public async Task<bool> RemoveAsync(Guid id)
         {
-            T entity = await Table.FirstOrDefaultAsync(data => data.Id == Guid.Parse(Id));
-            return Remove(entity);
+            T entity = await Table.FirstOrDefaultAsync(e => e.Id == id);
+            return entity != null && Remove(entity);
+        }
+
+        public Task<bool> RemoveAsync(string Id)
+        {
+            throw new NotImplementedException();
         }
 
         public bool RemoveRange(List<T> entities)
@@ -59,14 +75,36 @@ namespace EComPayApp.Persistence.Repositories
         }
 
         public async Task<int> SaveAsync()
-        => await _context.SaveChangesAsync();
+            => await _context.SaveChangesAsync();
+
+        public async Task<int> SaveAsync(CancellationToken cancellationToken)
+            => await _context.SaveChangesAsync(cancellationToken);
 
         public bool Update(T entity)
         {
-            EntityEntry entityEntry = Table.Update(entity);
+            EntityEntry<T> entityEntry = Table.Update(entity);
             return entityEntry.State == EntityState.Modified;
+        }
 
+        public async Task<bool> UpdateAsync(T entity)
+        {
+            EntityEntry<T> entityEntry = Table.Update(entity);
+            return await Task.FromResult(entityEntry.State == EntityState.Modified);
+        }
+
+        public Task UpdateAsync(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateAsync(Customer customer)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IWriteRepository<T>.SaveAsync()
+        {
+            throw new NotImplementedException();
         }
     }
-
 }
