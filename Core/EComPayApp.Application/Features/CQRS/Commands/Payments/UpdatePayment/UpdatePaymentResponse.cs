@@ -2,5 +2,7 @@
 {
     public class UpdatePaymentResponse
     {
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
     }
 }

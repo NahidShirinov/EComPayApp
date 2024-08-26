@@ -8,5 +8,7 @@ namespace EComPayApp.Application.Features.CQRS.Commands.Payments.DeletePayment
 {
     public class DeletePaymentResponse
     {
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
     }
 }
