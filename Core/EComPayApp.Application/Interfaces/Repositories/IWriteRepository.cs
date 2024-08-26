@@ -23,5 +23,7 @@ namespace EComPayApp.Application.Interfaces.Repositories
         Task UpdateAsync(Customer customer);
         Task DeleteAsync(Customer customer);
         Task SaveAsync();
+        void DeleteAsync(Order order);
+        void DeleteAsync(OrderItem orderItem);
     }
 }

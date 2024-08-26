@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EComPayApp.Application.DTOs.AddressDtos;
 using EComPayApp.Application.Interfaces.Repositories;
 using MediatR;
 using System;
@@ -41,8 +42,9 @@ namespace EComPayApp.Application.Features.CQRS.Commands.Address.UpdateAddress
 
             return new UpdateAddressResponse
             {
-                IsSuccess = result,
-                Message = result ? "Address updated successfully" : "Update failed"
+                IsSuccess = true,
+                Message = "Address updated successfully",
+                Address = _mapper.Map<GetAddressDto>(address)
             };
         }
     

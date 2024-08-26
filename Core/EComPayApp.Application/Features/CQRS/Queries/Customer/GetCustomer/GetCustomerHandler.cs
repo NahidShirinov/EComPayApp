@@ -42,7 +42,9 @@ namespace EComPayApp.Application.Features.CQRS.Queries.Customer.GetCustomer
             return new GetCustomerResponse
             {
                 IsSuccess = true,
-                Customer = customerDto
+                Message = "Customer retrieved successfully",
+                Customer = _mapper.Map<GetCustomerDto>(customer)
+
             };
         }
     }

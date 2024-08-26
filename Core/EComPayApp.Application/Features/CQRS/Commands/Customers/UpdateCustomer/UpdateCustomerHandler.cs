@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EComPayApp.Application.DTOs.CustomerDtos;
 using EComPayApp.Application.Interfaces.Repositories;
 using EComPayApp.Domain.Entities;
 using MediatR;
@@ -41,8 +42,9 @@ namespace EComPayApp.Application.Features.CQRS.Commands.Customers.UpdateCustomer
 
             return new UpdateCustomerResponse
             {
-                IsSuccess = result,
-                Message = result ? "Customer updated successfully" : "Update failed"
+                IsSuccess = true,
+                Message = "Customer updated successfully",
+                Customer = _mapper.Map<GetCustomerDto>(customer)
             };
         }
     }

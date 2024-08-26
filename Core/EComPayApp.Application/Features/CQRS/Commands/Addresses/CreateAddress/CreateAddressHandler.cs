@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EComPayApp.Application.DTOs.AddressDtos;
 using EComPayApp.Application.Interfaces.Repositories;
 using MediatR;
 using System;
@@ -31,8 +32,9 @@ namespace EComPayApp.Application.Features.CQRS.Commands.Address.CreateAddress
             // Cavab üçün DTO yaradın
             var response = new CreateAddressResponse
             {
-                Id = address.Id, // Yeni yaradılmış Address-in Id-sini əldə et
-                IsSuccess = result
+                IsSuccess = true,
+                Message = "Address created successfully",
+                Address = _mapper.Map<GetAddressDto>(address)
             };
 
             return response;

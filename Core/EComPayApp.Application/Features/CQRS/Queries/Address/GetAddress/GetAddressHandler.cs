@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using EComPayApp.Application.DTOs.AddressDtos;
+using EComPayApp.Application.DTOs.CustomerDtos;
 using EComPayApp.Application.Features.CQRS.Queries.Customer.GetCustomer;
 using EComPayApp.Application.Interfaces.Repositories;
+using EComPayApp.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -40,7 +42,8 @@ namespace EComPayApp.Application.Features.CQRS.Queries.Address.GetAddress
             return new GetAddressResponse
             {
                 IsSuccess = true,
-                Address = addressDto
+                Message = "Customer retrieved successfully",
+                Address = _mapper.Map<GetAddressDto>(address)
             };
         }
     }

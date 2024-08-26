@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EComPayApp.Application.DTOs.ProductDtos;
 using EComPayApp.Application.Features.CQRS.Queries.Products.GetProduct;
 using EComPayApp.Application.Interfaces.Repositories;
 using EComPayApp.Application.Interfaces.Repositories.IUnitOfWork;
@@ -43,8 +44,9 @@ namespace EComPayApp.Application.Features.CQRS.Commands.Products.UpdateProduct
 
             return new UpdateProductResponse
             {
-                IsSuccess = result,
-                Message = result ? "Product updated successfully" : "Update failed"
+                IsSuccess = true,
+                Message = "Product updated successfully",
+                Product = _mapper.Map<GetProductDto>(product)
             };
         }
     }

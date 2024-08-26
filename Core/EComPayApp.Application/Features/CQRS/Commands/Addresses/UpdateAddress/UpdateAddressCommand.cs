@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using EComPayApp.Application.DTOs.BranchDtos;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace EComPayApp.Application.Features.CQRS.Commands.Address.UpdateAddress
         public string State { get; set; }
         public string ZipCode { get; set; }
         public string Country { get; set; }
-    
+        public ICollection<GetBranchDto> Branches { get; set; }
+
     }
 }

@@ -40,6 +40,16 @@ namespace EComPayApp.Persistence.Repositories
             throw new NotImplementedException();
         }
 
+        public void DeleteAsync(Order order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteAsync(OrderItem orderItem)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<T> GetByIdAsync(Guid id)
         {
             // ID ilə entiti-ni tapmaq üçün `Table` istifadə edilir.

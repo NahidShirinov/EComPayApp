@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace EComPayApp.Application.Features.CQRS.Queries.Products.GetProduct
+namespace EComPayApp.Application.Interfaces
 {
     [Serializable]
     internal class NotFoundException : Exception

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EComPayApp.Application.DTOs.CustomerDtos;
 using EComPayApp.Application.Interfaces.Repositories;
 using EComPayApp.Domain.Entities;
 using MediatR;
@@ -30,8 +31,9 @@ namespace EComPayApp.Application.Features.CQRS.Commands.Customers.CreateCustomer
 
             return new CreateCustomerResponse
             {
-                IsSuccess = result,
-                Message = result ? "Customer created successfully" : "Creation failed"
+                IsSuccess = true,
+                Message = "Customer created successfully",
+                Customer = _mapper.Map<GetCustomerDto>(customer)
             };
         }
     }

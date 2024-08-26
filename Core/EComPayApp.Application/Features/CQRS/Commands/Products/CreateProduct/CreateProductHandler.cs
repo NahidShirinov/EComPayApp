@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EComPayApp.Application.DTOs.ProductDtos;
 using EComPayApp.Application.Interfaces.Repositories;
 using EComPayApp.Application.Interfaces.Repositories.IUnitOfWork;
 using EComPayApp.Domain.Entities;
@@ -31,8 +32,9 @@ namespace EComPayApp.Application.Features.CQRS.Commands.Products.CreateProduct
 
             return new CreateProductResponse
             {
-                IsSuccess = result,
-                Message = result ? "Product created successfully" : "Creation failed"
+                IsSuccess = true,
+                Message = "Product created successfully",
+                Product = _mapper.Map<GetProductDto>(product)
             };
         }
     }

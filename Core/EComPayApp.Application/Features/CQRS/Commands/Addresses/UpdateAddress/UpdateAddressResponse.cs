@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EComPayApp.Application.DTOs.AddressDtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,6 @@ namespace EComPayApp.Application.Features.CQRS.Commands.Address.UpdateAddress
     {
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
+        public GetAddressDto Address { get; set; }
     }
 }
