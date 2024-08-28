@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using EComPayApp.Application.DTOs.ProductDtos;
+using MediatR;
 
 namespace EComPayApp.Application.Features.CQRS.Commands.Branches.UpdateBranch
 {
@@ -10,5 +11,6 @@ namespace EComPayApp.Application.Features.CQRS.Commands.Branches.UpdateBranch
         public string Description { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public ICollection<GetProductDto> Products { get; set; }
     }
 }

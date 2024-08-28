@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using EComPayApp.Application.DTOs.ProductDtos;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace EComPayApp.Application.Features.CQRS.Commands.Categories.UpdateCategor
     public class UpdateCategoryCommand:IRequest<UpdateCategoryResponse>
     {
         public string Name { get; set; }
+        public ICollection<GetProductDto> Products { get; set; }
         public Guid Id { get; set; }
 
     }
