@@ -8,12 +8,9 @@ using System.Threading.Tasks;
 
 namespace EComPayApp.Application.Features.CQRS.Queries
 {
-    public class GetCategoryQuery : IRequest<GetCategoryQuery>
+    public class GetCategoryQuery : IRequest<GetCategoryResponse>
     {
         public Guid Id { get; set; }
-        public GetCategoryQuery(Guid id)
-        {
-            Id = id;
-        }
+      
     }
 }
