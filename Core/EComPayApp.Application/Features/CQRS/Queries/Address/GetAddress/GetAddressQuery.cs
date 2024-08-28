@@ -10,9 +10,6 @@ namespace EComPayApp.Application.Features.CQRS.Queries.Address.GetAddress
     public class GetAddressQuery : IRequest<GetAddressResponse>
     {
         public Guid Id { get; set; }
-        public GetAddressQuery(Guid id)
-        {
-            Id = id; 
-        }
+       
     }
 }

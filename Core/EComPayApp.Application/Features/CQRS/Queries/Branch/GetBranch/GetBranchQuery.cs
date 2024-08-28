@@ -10,9 +10,7 @@ namespace EComPayApp.Application.Features.CQRS.Queries
     public class GetBranchQuery:IRequest<GetBranchResponse>
     {
         public Guid Id { get; set; }
-        public GetBranchQuery(Guid id)
-        {
-            Id = id;
+       
         }
     }
-}
+

@@ -1,6 +1,8 @@
 using EComPayApp.Application.Interfaces.Repositories.IUnitOfWork;
 using EComPayApp.Persistence;
 using EComPayApp.Persistence.UoW;
+using MediatR;
+using Microsoft.AspNetCore.Hosting;
 using System.Reflection;
 namespace EComPayApp.API
 {
@@ -12,7 +14,8 @@ namespace EComPayApp.API
             var builder = WebApplication.CreateBuilder(args);
             // Add services to the container.
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-       
+            builder.Services.AddMediatR(typeof(Program).Assembly);
+
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             builder.Services.AddControllers();
