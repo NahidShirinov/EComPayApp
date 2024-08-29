@@ -9,6 +9,7 @@ using EComPayApp.Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 namespace EComPayApp.API
 {
     public class Program
@@ -19,13 +20,15 @@ namespace EComPayApp.API
             var builder = WebApplication.CreateBuilder(args);
             // Add services to the container.
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            //builder.Services.AddMediatR(cfg =>
-            //{
-            //    cfg.RegisterServicesFromAssemblies(
-            //        Assembly.GetExecutingAssembly(),
-            //        Assembly.Load("EComPayApp.Application") 
-            //    );
-            //});
+
+            // MediatR'yi ekliyoruz
+            builder.Services.AddMediatR(cfg =>
+            {
+                cfg.RegisterServicesFromAssemblies(
+                    Assembly.GetExecutingAssembly(),
+                    Assembly.Load("EComPayApp.Application")
+                );
+            });
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -34,8 +37,9 @@ namespace EComPayApp.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddPersistenceServices();
+
             var app = builder.Build();
-           
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -46,7 +50,6 @@ namespace EComPayApp.API
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

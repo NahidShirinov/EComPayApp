@@ -1,6 +1,10 @@
 ﻿
 using EComPayApp.Application.Features.CQRS.Queries.Address.GetAddress;
+using EComPayApp.Application.Interfaces.Repositories.IUnitOfWork;
+using EComPayApp.Application.Interfaces.Repositories;
 using EComPayApp.Persistence.Contexts;
+using EComPayApp.Persistence.Repositories;
+using EComPayApp.Persistence.UoW;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,16 +21,17 @@ namespace EComPayApp.Persistence
     {
         public static void AddPersistenceServices(this IServiceCollection services)
         {
-           
+            // Register the DbContext
             services.AddDbContext<EComPayAppDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.ConnectionString);
             });
-            //services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetAddressHandler).Assembly));
 
-            
+            services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
+            services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
-
     }
 
 }

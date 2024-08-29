@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EComPayApp.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/OrderItem")]
     [ApiController]
     public class OrderItemController : ControllerBase
     {

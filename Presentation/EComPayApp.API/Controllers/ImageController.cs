@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EComPayApp.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/image")]
     [ApiController]
     public class ImageController : ControllerBase
     {
