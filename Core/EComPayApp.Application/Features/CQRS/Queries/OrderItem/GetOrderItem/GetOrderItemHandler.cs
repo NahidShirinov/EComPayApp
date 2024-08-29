@@ -24,7 +24,7 @@ namespace EComPayApp.Application.Features.CQRS.Queries.OrderItems.GetOrderItem
 
         public async Task<GetOrderItemResponse> Handle(GetOrderItemQuery request, CancellationToken cancellationToken)
         {
-            var orderItem = await _unitOfWork.ReadRepository<OrderItem>().GetByIdAsync(request.OrderItemId);
+            var orderItem = await _unitOfWork.ReadRepository<OrderItem>().GetByIdAsync(request.Id);
             if (orderItem == null)
             {
                 return new GetOrderItemResponse

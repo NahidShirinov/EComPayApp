@@ -9,7 +9,7 @@ namespace EComPayApp.Application.Features.CQRS.Queries.OrderItems.GetOrderItem
 {
     public class GetOrderItemQuery : IRequest<GetOrderItemResponse>
     {
-        public Guid OrderItemId { get; set; }
+        public Guid Id { get; set; }
     }
     
     }

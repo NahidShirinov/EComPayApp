@@ -2,8 +2,6 @@ using EComPayApp.Application.Interfaces.Repositories.IUnitOfWork;
 using EComPayApp.Persistence;
 using EComPayApp.Persistence.UoW;
 using MediatR;
-using Microsoft.AspNetCore.Hosting;
-using System.Reflection;
 namespace EComPayApp.API
 {
     public class Program
