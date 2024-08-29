@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EComPayApp.API.Controllers
 {
+    [Route("api/Orders")]
     public class OrderController : ControllerBase
     {
         private readonly IMediator _mediator;
