@@ -12,15 +12,12 @@ namespace EComPayApp.Application.Mappers.Profiles
     {
         public CustomerMappingProfile()
         {
-<<<<<<< HEAD
             CreateMap<CreateCustomerCommand, Customer>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore()); 
 
             CreateMap<Customer, GetCustomerDto>().ReverseMap();
-=======
             CreateMap<Customer, GetCustomerResponse>().ReverseMap();
             CreateMap<Customer, CreateCustomerCommand>().ReverseMap();
->>>>>>> 128787b639f40b71989e91b3dbd7b28d84879372
         }
     }
 }

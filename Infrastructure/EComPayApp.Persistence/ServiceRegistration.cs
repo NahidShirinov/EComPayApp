@@ -14,6 +14,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using EComPayApp.Domain.Entities.Identity;
+using EComPayApp.Domain.Entities;
 
 namespace EComPayApp.Persistence
 {
@@ -26,7 +28,7 @@ namespace EComPayApp.Persistence
             {
                 options.UseSqlServer(Configuration.ConnectionString);
             });
-
+            services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<EComPayAppDbContext>();
             services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
             services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
 

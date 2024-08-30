@@ -1,30 +1,28 @@
 ﻿using EComPayApp.Domain.Entities;
+using EComPayApp.Domain.Entities.Identity;
 using EComPayApp.Persistence.Configurations;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EComPayApp.Persistence.Contexts
 {
-    public class EComPayAppDbContext:DbContext
+    public class EComPayAppDbContext:IdentityDbContext<AppUser,AppRole,string>
     {
 
         public EComPayAppDbContext(DbContextOptions options):base(options) { }
-        DbSet<Address> Addresses { get; set; }
-        DbSet<Branch> Branches { get; set; }
-        DbSet<Category> Categories { get; set; }
-        DbSet<Customer> Customers { get; set; }
-        DbSet<Image> Images { get; set; }
-        DbSet<Order> Orders { get; set; }
-        DbSet<OrderItem> OrderItems { get; set; }
-        DbSet<Payment> Payments { get; set; }
-        DbSet<Product> Products { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Branch> Branches { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(EComPayAppDbContext).Assembly);
         }
     }
