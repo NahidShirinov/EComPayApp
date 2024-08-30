@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using EComPayApp.Application.DTOs.ImageDtos;
+using EComPayApp.Application.Features.CQRS.Commands.Images.CreateImage;
+using EComPayApp.Application.Features.CQRS.Commands.Payments.CreatePayment;
+using EComPayApp.Application.Features.CQRS.Queries;
 using EComPayApp.Domain.Entities;
 
 
@@ -9,7 +12,8 @@ namespace EComPayApp.Application.Mappers.Profiles
     {
         public ImageProfile()
         {
-            CreateMap<Image, GetImageDto>().ReverseMap();
+            CreateMap<Image, GetImageResponse>().ReverseMap();
+            CreateMap<Image, CreateImageCommand>().ReverseMap();
         }
     }
 }

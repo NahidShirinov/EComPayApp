@@ -21,7 +21,7 @@ namespace EComPayApp.API
             // Add services to the container.
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            // MediatR'yi ekliyoruz
+           
             builder.Services.AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssemblies(

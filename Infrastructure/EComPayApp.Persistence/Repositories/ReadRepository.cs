@@ -55,10 +55,11 @@ namespace EComPayApp.Persistence.Repositories
 
        
 
-        Task<T> IReadRepository<T>.GetByIdAsync(Guid id)
+        async Task<T> IReadRepository<T>.GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await _context.Set<T>().FindAsync(id);
         }
     }
+    }
 
-}
+
