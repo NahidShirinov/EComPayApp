@@ -9,7 +9,6 @@ namespace EComPayApp.Application.Mappers.Profiles
     {
         public CustomerMappingProfile()
         {
-            // Mapping between CreateCustomerCommand and Customer
             CreateMap<CreateCustomerCommand, Customer>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore()); 
 

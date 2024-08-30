@@ -25,7 +25,6 @@ namespace EComPayApp.Persistence.Configurations
             builder.Property(p => p.PaymentMethod)
                    .IsRequired()
                    .HasMaxLength(100); 
-
            
             builder.Property(p => p.Status)
                    .IsRequired();
