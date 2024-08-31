@@ -18,6 +18,7 @@ namespace EComPayApp.Application.Features.CQRS.Commands.AppUsers.CreateUser
         public async Task<CreateUserResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
          IdentityResult result=await _userManager.CreateAsync(new() { 
+               Id=Guid.NewGuid().ToString(),
                UserName=request.Username,
                Email=request.Email,
                NameSurname=request.NameSurname,

@@ -1,4 +1,5 @@
 ﻿using EComPayApp.Application.Features.CQRS.Commands.AppUsers.CreateUser;
+using EComPayApp.Application.Features.CQRS.Commands.AppUsers.LoginUser;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,12 @@ namespace EComPayApp.API.Controllers
         public async Task<IActionResult> Create(CreateUserCommand createUserCommand)
         {
             CreateUserResponse response = await _mediator.Send(createUserCommand);
+            return Ok(response);
+        }
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Login(LoginUserCommand loginUserCommand)
+        {
+            LoginUserResponse response= await _mediator.Send(loginUserCommand);
             return Ok(response);
         }
     }
