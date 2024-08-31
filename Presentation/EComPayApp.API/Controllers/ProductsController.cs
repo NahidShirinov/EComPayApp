@@ -3,11 +3,14 @@ using EComPayApp.Application.Features.CQRS.Commands.Products.DeleteProduct;
 using EComPayApp.Application.Features.CQRS.Commands.Products.UpdateProduct;
 using EComPayApp.Application.Features.CQRS.Queries.Products.GetProduct;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EComPayApp.API.Controllers
 {
     [Route("api/product")]
+    [Authorize(AuthenticationSchemes = "Admin")]
+
     public class ProductController : ControllerBase
     {
         private readonly IMediator _mediator;

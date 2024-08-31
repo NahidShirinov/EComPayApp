@@ -3,11 +3,14 @@ using EComPayApp.Application.Features.CQRS.Commands.Address.DeleteAddress;
 using EComPayApp.Application.Features.CQRS.Commands.Address.UpdateAddress;
 using EComPayApp.Application.Features.CQRS.Queries.Address.GetAddress;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EComPayApp.API.Controllers
 {
     [Route("api/Address")]
+    [Authorize(AuthenticationSchemes ="Admin")]
+        
     public class AddressController : ControllerBase
     {
         private readonly IMediator _mediator;

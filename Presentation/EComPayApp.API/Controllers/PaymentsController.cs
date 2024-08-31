@@ -3,6 +3,7 @@ using EComPayApp.Application.Features.CQRS.Commands.Payments.DeletePayment;
 using EComPayApp.Application.Features.CQRS.Commands.Payments.UpdatePayment;
 using EComPayApp.Application.Features.CQRS.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,6 +11,8 @@ namespace EComPayApp.API.Controllers
 {
     [Route("api/payment")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = "Admin")]
+
     public class PaymentController : ControllerBase
     {
         private readonly IMediator _mediator;

@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\EComPayApp.Infrastructure\EComPayApp.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\EComPayApp.Persistence\EComPayApp.Persistence.csproj" />
   </ItemGroup>
 

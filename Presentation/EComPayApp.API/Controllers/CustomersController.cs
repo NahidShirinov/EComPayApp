@@ -1,57 +1,53 @@
 ﻿using EComPayApp.Application.Features.CQRS.Commands.Customers.CreateCustomer;
 using EComPayApp.Application.Features.CQRS.Commands.Customers.DeleteCustomer;
 using EComPayApp.Application.Features.CQRS.Commands.Customers.UpdateCustomer;
-using EComPayApp.Application.Features.CQRS.Commands.Images.CreateImage;
-using EComPayApp.Application.Features.CQRS.Commands.Images.DeleteImage;
-using EComPayApp.Application.Features.CQRS.Commands.Images.UpdateImage;
-using EComPayApp.Application.Features.CQRS.Queries;
 using EComPayApp.Application.Features.CQRS.Queries.Customer.GetCustomer;
 using MediatR;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EComPayApp.API.Controllers
 {
-    [Route("api/image")]
-    [ApiController]
-    public class ImageController : ControllerBase
+    [Route("api/customer")]
+    [Authorize(AuthenticationSchemes ="Admin")]
+    public class CustomerController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public ImageController(IMediator mediator)
+        public CustomerController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        // Get all images
+        // Get all customers
         [HttpGet]
-        public async Task<IActionResult> GetAllImages()
+        public async Task<IActionResult> GetAllCustomers()
         {
-            var query = new GetImageQuery();
+            var query = new GetCustomerQuery();
             var result = await _mediator.Send(query);
             return Ok(result);
         }
 
-        // Get a image by ID
+        // Get a customer by ID
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetImageById(Guid id)
+        public async Task<IActionResult> GetCustomerById(Guid id)
         {
-            var query = new GetImageQuery { Id = id };
+            var query = new GetCustomerQuery { Id = id };
             var result = await _mediator.Send(query);
             return result.IsSuccess ? Ok(result) : NotFound(result.Message);
         }
 
-        // Create a new image
+        // Create a new customer
         [HttpPost]
-        public async Task<IActionResult> CreateImage(CreateImageCommand command)
+        public async Task<IActionResult> CreateCustomer(CreateCustomerCommand command)
         {
             var result = await _mediator.Send(command);
             return result.IsSuccess ? Ok(result) : BadRequest(result.Message);
         }
 
-        // Update an existing image
+        // Update an existing customer
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateImage(Guid id, UpdateImageCommand command)
+        public async Task<IActionResult> UpdateCustomer(Guid id, UpdateCustomerCommand command)
         {
             if (id != command.Id)
             {
@@ -62,14 +58,14 @@ namespace EComPayApp.API.Controllers
             return result.IsSuccess ? Ok(result) : NotFound(result.Message);
         }
 
-        // Delete a image
+        // Delete a customer
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteImage(Guid id)
+        public async Task<IActionResult> DeleteCustomer(Guid id)
         {
-            var command = new DeleteImageCommand { Id = id };
+            var command = new DeleteCustomerCommand { Id = id };
             var result = await _mediator.Send(command);
             return result.IsSuccess ? Ok(result) : NotFound(result.Message);
         }
-
+    
     }
 }

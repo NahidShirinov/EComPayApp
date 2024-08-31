@@ -3,11 +3,14 @@ using EComPayApp.Application.Features.CQRS.Commands.Orders.DeleteImage;
 using EComPayApp.Application.Features.CQRS.Commands.Orders.UpdateImage;
 using EComPayApp.Application.Features.CQRS.Queries.Order.GetOrder;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EComPayApp.API.Controllers
 {
     [Route("api/order")]
+    [Authorize(AuthenticationSchemes = "Admin")]
+
     public class OrderController : ControllerBase
     {
         private readonly IMediator _mediator;

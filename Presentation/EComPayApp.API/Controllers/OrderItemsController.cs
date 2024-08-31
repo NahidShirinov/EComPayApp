@@ -4,6 +4,7 @@ using EComPayApp.Application.Features.CQRS.Commands.Orders.UpdateImage;
 using EComPayApp.Application.Features.CQRS.Queries;
 using EComPayApp.Application.Features.CQRS.Queries.OrderItems.GetOrderItem;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,8 @@ namespace EComPayApp.API.Controllers
 {
     [Route("api/OrderItem")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = "Admin")]
+
     public class OrderItemController : ControllerBase
     {
         private readonly IMediator _mediator;

@@ -3,6 +3,7 @@ using EComPayApp.Application.Features.CQRS.Commands.Contact.DeleteContact;
 using EComPayApp.Application.Features.CQRS.Commands.Contact.UpdateContact;
 using EComPayApp.Application.Features.CQRS.Queries.Contact.GetContact;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,6 +11,8 @@ namespace EComPayApp.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = "Admin")]
+
     public class ContactController : ControllerBase
     {
         private readonly IMediator _mediator;

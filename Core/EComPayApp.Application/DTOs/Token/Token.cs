@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace EComPayApp.Application.DTOs.Token
 {
-    internal class Token
+    public class Token
     {
+        public string AccessToken { get; set; }
+        public DateTime Expiration { get; set; }
     }
 }

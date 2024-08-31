@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace EComPayApp.Application.Interfaces.Token
 {
-    internal interface ITokenHandler
+    public interface ITokenHandler
     {
+        EComPayApp.Application.DTOs.Token.Token CreateAccessToken(int minute);
     }
 }

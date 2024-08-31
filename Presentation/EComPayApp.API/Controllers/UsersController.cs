@@ -1,6 +1,7 @@
 ﻿using EComPayApp.Application.Features.CQRS.Commands.AppUsers.CreateUser;
 using EComPayApp.Application.Features.CQRS.Commands.AppUsers.LoginUser;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,8 @@ namespace EComPayApp.API.Controllers
 {
     [Route("api/Users")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = "Admin")]
+
     public class UsersController : ControllerBase
     {
         readonly IMediator _mediator;
