@@ -8,14 +8,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EComPayApp.API.Controllers
 {
-    [Route("api/Address")]
+    [Route("api/AddressAddresses")]
     [Authorize(AuthenticationSchemes ="Admin")]
         
-    public class AddressController : ControllerBase
+    public class AddressesController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public AddressController(IMediator mediator)
+        public AddressesController(IMediator mediator)
         {
             _mediator = mediator;
         }

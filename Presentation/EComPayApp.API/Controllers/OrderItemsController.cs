@@ -10,15 +10,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EComPayApp.API.Controllers
 {
-    [Route("api/OrderItem")]
+    [Route("api/OrderItems")]
     [ApiController]
     [Authorize(AuthenticationSchemes = "Admin")]
 
-    public class OrderItemController : ControllerBase
+    public class OrderItemsController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public OrderItemController(IMediator mediator)
+        public OrderItemsController(IMediator mediator)
         {
             _mediator = mediator;
         }

@@ -13,15 +13,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EComPayApp.API.Controllers
 {
-    [Route("api/image")]
+    [Route("api/Images")]
     [ApiController]
     [Authorize(AuthenticationSchemes = "Admin")]
 
-    public class ImageController : ControllerBase
+    public class ImagesController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public ImageController(IMediator mediator)
+        public ImagesController(IMediator mediator)
         {
             _mediator = mediator;
         }

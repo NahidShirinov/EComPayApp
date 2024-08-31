@@ -8,14 +8,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EComPayApp.API.Controllers
 {
-    [Route("api/branch")]
+    [Route("api/Branches")]
     [Authorize(AuthenticationSchemes = "Admin")]
 
-    public class BranchController : ControllerBase
+    public class BranchesController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public BranchController(IMediator mediator)
+        public BranchesController(IMediator mediator)
         {
             _mediator = mediator;
         }
