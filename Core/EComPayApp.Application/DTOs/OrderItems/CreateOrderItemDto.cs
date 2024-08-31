@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace EComPayApp.Application.DTOs.OrderItems
 {
-    public class OrderItemsListDto:IDto
+    public class CreateOrderItemDto:IDto
     {
         public Guid ProductId { get; set; }
-        public string ProductName { get; set; }   
         public int Quantity { get; set; }
-        public float TotalPrice { get; set; }   
     }
 }

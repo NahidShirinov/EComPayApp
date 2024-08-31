@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EComPayApp.Application.DTOs.OrderItems
 {
-    public class GetOrderItemsDto:IDto
+    public class GetOrderItemDto:IDto
     {
         public Guid ProductId { get; set; }
         public GetProductDto Product { get; set; } // Ürün bilgilerini içeren DTO

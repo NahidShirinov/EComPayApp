@@ -38,7 +38,7 @@ namespace EComPayApp.Application.Features.CQRS.Queries.OrderItems.GetOrderItem
             {
                 IsSuccess = true,
                 Message = "Order item retrieved successfully",
-                OrderItem = _mapper.Map<GetOrderItemsDto>(orderItem)
+                OrderItem = _mapper.Map<GetOrderItemDto>(orderItem)
             };
         }
     

@@ -11,6 +11,6 @@ namespace EComPayApp.Application.Features.CQRS.Queries.OrderItems.GetOrderItem
     {
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
-        public GetOrderItemsDto OrderItem { get; set; }
+        public GetOrderItemDto OrderItem { get; set; }
     }
 }

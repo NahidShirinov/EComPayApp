@@ -41,7 +41,7 @@ namespace EComPayApp.Application.Features.CQRS.Commands.OrderItems.UpdateOrderIt
             {
                 IsSuccess = true,
                 Message = "Order item updated successfully",
-                OrderItem = _mapper.Map<GetOrderItemsDto>(orderItem)
+                OrderItem = _mapper.Map<GetOrderItemDto>(orderItem)
             };
         }
     

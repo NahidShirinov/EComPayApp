@@ -49,7 +49,7 @@ namespace EComPayApp.Application.Features.CQRS.Commands.OrderItems.CreateOrderIt
             {
                 IsSuccess = true,
                 Message = "Order item created successfully",
-                OrderItem = _mapper.Map<GetOrderItemsDto>(orderItem)
+                OrderItem = _mapper.Map<GetOrderItemDto>(orderItem)
             };
         }
     }

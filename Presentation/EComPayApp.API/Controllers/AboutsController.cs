@@ -2,6 +2,7 @@
 using EComPayApp.Application.Features.CQRS.Commands.About.DeleteAbout;
 using EComPayApp.Application.Features.CQRS.Commands.About.UpdateAbout;
 using EComPayApp.Application.Features.CQRS.Queries.About.GetAbout;
+using EComPayApp.Application.Features.CQRS.Queries.Customer.GetCustomer;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +22,13 @@ namespace EComPayApp.API.Controllers
         {
             _mediator = mediator;
         }
-
+        [HttpGet]
+        public async Task<IActionResult> GetAllAbout()
+        {
+            var query = new GetAboutQuery();
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAbout(Guid id)
         {

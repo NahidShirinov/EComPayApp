@@ -11,6 +11,6 @@ namespace EComPayApp.Application.Features.CQRS.Commands.OrderItems.UpdateOrderIt
     {
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
-        public GetOrderItemsDto OrderItem { get; set; }
+        public GetOrderItemDto OrderItem { get; set; }
     }
 }

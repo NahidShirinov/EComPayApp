@@ -2,6 +2,7 @@
 using EComPayApp.Application.Features.CQRS.Commands.Contact.DeleteContact;
 using EComPayApp.Application.Features.CQRS.Commands.Contact.UpdateContact;
 using EComPayApp.Application.Features.CQRS.Queries.Contact.GetContact;
+using EComPayApp.Application.Features.CQRS.Queries.Customer.GetCustomer;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +21,13 @@ namespace EComPayApp.API.Controllers
         public ContactsController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAllContact()
+        {
+            var query = new GetContactQuery();
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
