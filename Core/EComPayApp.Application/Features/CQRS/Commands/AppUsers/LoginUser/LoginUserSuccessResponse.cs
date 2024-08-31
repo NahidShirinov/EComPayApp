@@ -2,7 +2,7 @@
 
 namespace EComPayApp.Application.Features.CQRS.Commands.AppUsers.LoginUser
 {
-    public class LoginUserResponse
+    public class LoginUserSuccessResponse
     {
         public Token Token { get; set; }
     }
