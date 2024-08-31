@@ -50,6 +50,11 @@ namespace EComPayApp.Persistence.Repositories
             throw new NotImplementedException();
         }
 
+        public Task DeleteAsync(About about)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<T> GetByIdAsync(Guid id)
         {
             // ID ilə entiti-ni tapmaq üçün `Table` istifadə edilir.
@@ -108,6 +113,11 @@ namespace EComPayApp.Persistence.Repositories
         }
 
         public Task UpdateAsync(Customer customer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateAsync(About about)
         {
             throw new NotImplementedException();
         }
