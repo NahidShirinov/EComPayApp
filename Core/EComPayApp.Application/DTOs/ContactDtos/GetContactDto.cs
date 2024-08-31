@@ -14,6 +14,7 @@ namespace EComPayApp.Application.DTOs.ContactDtos
         public string PhoneNumber { get; set; }  
         public string Email { get; set; }  
         public string WorkingHours { get; set; }  
-        public string MapLocation { get; set; }  
+        public string MapLocation { get; set; }
+       
     }
 }
