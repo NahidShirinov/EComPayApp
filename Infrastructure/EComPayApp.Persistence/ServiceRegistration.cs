@@ -28,7 +28,15 @@ namespace EComPayApp.Persistence
             {
                 options.UseSqlServer(Configuration.ConnectionString);
             });
-            services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<EComPayAppDbContext>();
+            services.AddIdentity<AppUser, AppRole>(options =>
+            {
+                options.Password.RequiredLength = 3;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+
+            }).AddEntityFrameworkStores<EComPayAppDbContext>();
             services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
             services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
 
