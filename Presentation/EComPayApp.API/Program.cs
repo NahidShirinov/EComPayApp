@@ -6,8 +6,9 @@ using EComPayApp.Persistence.UoW;
 using System.Reflection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using EComPayApp.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using FluentValidation.AspNetCore;
+using EComPayApp.Application.Validators.Abouts;
 
 namespace EComPayApp.API
 {
@@ -28,12 +29,19 @@ namespace EComPayApp.API
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddInfrastructureServices();
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                .AddFluentValidation(opt =>
+                {
+                    opt.ImplicitlyValidateChildProperties = true;
+                    opt.ImplicitlyValidateRootCollectionElements= true;
+                    opt.RegisterValidatorsFromAssemblyContaining<CreateAboutDtoValidator>();
+
+                });
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddPersistenceServices();
             builder.Services.AddInfrastructureServices();
-            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme   )
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer("Admin",options =>
                 {
                     options.TokenValidationParameters = new()
