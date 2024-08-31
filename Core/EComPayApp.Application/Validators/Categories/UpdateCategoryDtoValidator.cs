@@ -1,4 +1,5 @@
 ﻿using EComPayApp.Application.DTOs.CategoryDtos;
+using EComPayApp.Application.Validators.Products;
 using FluentValidation;
 
 namespace EComPayApp.Application.Validators.Categories

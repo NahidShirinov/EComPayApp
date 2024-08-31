@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace EComPayApp.Application.Validators.Customers
 {
-    public class CreateCustomerDtoValidator : AbstractValidator<CreateCustomerDto>
+    public class GetCustomerDtoValidator : AbstractValidator<GetCustomerDto>
     {
-        public CreateCustomerDtoValidator()
+        public GetCustomerDtoValidator()
         {
             RuleFor(x => x.FirstName)
                 .NotEmpty().WithMessage("FirstName is required.")
@@ -22,12 +22,11 @@ namespace EComPayApp.Application.Validators.Customers
                 .Length(1, 50).WithMessage("LastName must be between 1 and 50 characters.");
 
             RuleFor(x => x.Email)
-                .EmailAddress().WithMessage("Email must be a valid email address.")
-                .When(x => !string.IsNullOrEmpty(x.Email)); 
+                .EmailAddress().When(x => !string.IsNullOrEmpty(x.Email))
+                .WithMessage("Email must be a valid email address.");
 
             RuleFor(x => x.Orders)
                 .NotNull().WithMessage("Orders collection cannot be null.")
-                .Must(orders => orders.Count > 0).WithMessage("At least one order is required.")
                 .ForEach(order => order.SetValidator(new GetOrderDtoValidator())); 
         }
     }

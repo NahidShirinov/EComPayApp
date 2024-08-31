@@ -1,4 +1,5 @@
 ﻿using EComPayApp.Application.DTOs.AddressDtos;
+using EComPayApp.Application.Validators.Branches;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace EComPayApp.Application.Validators.Addresses
             RuleFor(x => x.Branches)
                 .NotNull().WithMessage("Branches collection cannot be null.")
                 .Must(branches => branches.Count > 0).WithMessage("At least one branch is required.")
-                .ForEach(branch => branch.SetValidator(new GetBranchValidator())); // Assumes GetBranchDto has its own validator
+                .ForEach(branch => branch.SetValidator(new GetBranchDtoValidator()));
         }
     }
 

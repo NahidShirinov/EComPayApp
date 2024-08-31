@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace EComPayApp.Application.Validators.Branches
 {
     using EComPayApp.Application.DTOs.BranchDtos;
+    using EComPayApp.Application.Validators.Products;
     using FluentValidation;
 
     public class CreateBranchDtoValidator : AbstractValidator<CreateBranchDto>
@@ -38,7 +39,7 @@ namespace EComPayApp.Application.Validators.Branches
             RuleFor(x => x.Products)
                 .NotNull().WithMessage("Products collection cannot be null.")
                 .Must(products => products.Count > 0).WithMessage("At least one product is required.")
-                .ForEach(product => product.SetValidator(new GetProductDtoValidator())); // Assumes GetProductDto has its own validator
+                .ForEach(product => product.SetValidator(new GetProductDtoValidator()));
         }
     }
 }

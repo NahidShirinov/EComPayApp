@@ -1,4 +1,5 @@
 ﻿using EComPayApp.Application.DTOs.CustomerDtos;
+using EComPayApp.Application.Validators.Orders;
 using FluentValidation;
 
 namespace EComPayApp.Application.Validators.Customers
