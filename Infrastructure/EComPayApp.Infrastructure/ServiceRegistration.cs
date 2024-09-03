@@ -1,5 +1,5 @@
 ﻿using EComPayApp.Application.Interfaces.Token;
-using EComPayApp.Infrastructure.Token;
+using EComPayApp.Infrastructure.Services.Token;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
