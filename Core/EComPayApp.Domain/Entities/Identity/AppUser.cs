@@ -14,5 +14,5 @@ namespace EComPayApp.Domain.Entities.Identity
         public DateTime RefreshTokenEndDate { get; set; }
 
     }
-
+    
 }

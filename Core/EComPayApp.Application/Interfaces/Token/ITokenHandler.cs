@@ -9,5 +9,6 @@ namespace EComPayApp.Application.Interfaces.Token
     public interface ITokenHandler
     {
         EComPayApp.Application.DTOs.Token.Token CreateAccessToken(int minute);
+        string CreateRefreshToken();
     }
 }

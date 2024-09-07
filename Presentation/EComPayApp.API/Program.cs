@@ -14,6 +14,7 @@ namespace EComPayApp.API
 {
     public class Program
     {
+        [Obsolete]
         public static void Main(string[] args)
         {
 

@@ -20,7 +20,6 @@ namespace EComPayApp.API.Controllers
             _mediator = mediator;
         }
 
-        // Get all orders
         [HttpGet]
         public async Task<IActionResult> GetAllOrders()
         {
@@ -29,7 +28,6 @@ namespace EComPayApp.API.Controllers
             return Ok(result);
         }
 
-        // Get an order by ID
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrderById(Guid id)
         {
@@ -38,7 +36,6 @@ namespace EComPayApp.API.Controllers
             return result.IsSuccess ? Ok(result) : NotFound(result.Message);
         }
 
-        // Create a new order
         [HttpPost]
         public async Task<IActionResult> CreateOrder(CreateOrderCommand command)
         {
@@ -46,7 +43,6 @@ namespace EComPayApp.API.Controllers
             return result.IsSuccess ? Ok(result) : BadRequest(result.Message);
         }
 
-        // Update an existing order
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateOrder(Guid id, UpdateOrderCommand command)
         {
@@ -59,7 +55,6 @@ namespace EComPayApp.API.Controllers
             return result.IsSuccess ? Ok(result) : NotFound(result.Message);
         }
 
-        // Delete an order
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(Guid id)
         {

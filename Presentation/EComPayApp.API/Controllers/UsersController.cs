@@ -1,4 +1,5 @@
 ﻿using EComPayApp.Application.Features.CQRS.Commands.AppUsers.CreateUser;
+using EComPayApp.Application.Features.CQRS.Commands.AppUsers.GoogleLogin;
 using EComPayApp.Application.Features.CQRS.Commands.AppUsers.LoginUser;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -31,5 +32,11 @@ namespace EComPayApp.API.Controllers
             LoginUserResponse response= await _mediator.Send(loginUserCommand);
             return Ok(response);
         }
+        [HttpPost("google-login")]
+        public async Task<IActionResult> GoogleLogin(GoogleLoginCommand googleLoginCommand) {
+            GoogleLoginResponse response = await _mediator.Send(googleLoginCommand);       
+            return Ok(response);
+        }
+
     }
 }
