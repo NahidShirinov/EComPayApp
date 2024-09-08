@@ -42,6 +42,7 @@ namespace EComPayApp.API
             builder.Services.AddSwaggerGen();
             builder.Services.AddPersistenceServices();
             builder.Services.AddInfrastructureServices();
+            builder.Services.AddHttpClient();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
        .AddJwtBearer("Admin", options =>
        {

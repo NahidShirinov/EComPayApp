@@ -1,4 +1,5 @@
 ﻿using EComPayApp.Application.Features.CQRS.Commands.AppUsers.CreateUser;
+using EComPayApp.Application.Features.CQRS.Commands.AppUsers.FacebookLogin;
 using EComPayApp.Application.Features.CQRS.Commands.AppUsers.GoogleLogin;
 using EComPayApp.Application.Features.CQRS.Commands.AppUsers.LoginUser;
 using MediatR;
@@ -37,6 +38,11 @@ namespace EComPayApp.API.Controllers
             GoogleLoginResponse response = await _mediator.Send(googleLoginCommand);       
             return Ok(response);
         }
-
+        [HttpPost("facebook-login")]
+        public async Task<IActionResult> FacebookLogin(FacebookLoginCommand facebookLoginCommand)
+        {
+            FacebookLoginResponse response = await _mediator.Send(facebookLoginCommand);
+            return Ok(response);
+        }
     }
 }
